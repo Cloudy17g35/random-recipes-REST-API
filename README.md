@@ -15,7 +15,7 @@ In first place all the recipes need to be scraped. Script called `run_scraper.py
 Diagram:
 
 
-![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/Scraper_diagram.drawio.png)
+![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/Scraper_diagram.png)
 
 
 
