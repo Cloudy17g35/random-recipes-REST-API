@@ -1,6 +1,4 @@
 #REST API FastAPI
 
-Enables to make GET operation
-> GET recipes/random_recipe
-
+[![Alt text]](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/Scraper_diagram.drawio.png)
 
