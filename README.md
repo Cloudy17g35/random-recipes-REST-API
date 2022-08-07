@@ -2,7 +2,9 @@
 
 Enables to make GET request
 `GET recipes/random_recipe?meal_type=?`
-Needs one parameter which is **meal_type**
+
+Needs one parameter which is **meal_type**.
+
 Returns recipe title and link in json format.
 
 All recipes are scraped from site [jadlonomia](https://www.jadlonomia.com/ "jadlonomia") which is Polish site with wegan food recipes.
@@ -15,5 +17,10 @@ Diagram:
 
 ![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/Scraper_diagram.drawio.png)
 
+
+
+After we have all recipes stored on S3 flow looks like on diagram showed below:
+
+![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/APIdiagram.drawio.png)
 
 
