@@ -1,7 +1,7 @@
-#RANDOM RECIPE REST API
+# RANDOM RECIPE REST API
 
 Enables to make GET request
-`GET recipes/random_recipe?random_meal?meal_type=lunch`
+`GET recipes/random_recipe?meal_type=lunch`
 Needs one parameter which is **meal_type**
 Returns recipe title and link in json format.
 
