@@ -1,5 +1,6 @@
 from random_recipes_api.scraper import Scraper
 from random_recipes_api.s3_handler import S3Handler
+from random_recipes_api.lunch_types_mapper import mapper
 import pandas as pd
 from typing import Dict, List
 
@@ -23,17 +24,13 @@ def get_s3_key_name(meal_type:str):
 
 def run_scraper():
     print('Scraping data started')
-    meal_types:List[str] = ['sniadania',
-                'przystawki', 'ciasta-i-desery',
-                'do-chleba', 'zupy', 'napoje',
-                'lunche-do-pracy', 'dania-glowne',
-                'sosy-i-dodatki']
-    for meal_type in meal_types:
-        current_data:Dict[str, str] = Scraper().get_data_for_meal_type(meal_type)
-        key:str = get_s3_key_name(meal_type)
+    meal_types_mapper:Dict[str, str] = mapper
+    for meal_for_request, meal_type_in_english in meal_types_mapper.items():
+        current_data:Dict[str, str] = Scraper().get_data_for_meal_type(meal_for_request)
+        key:str = get_s3_key_name(meal_type_in_english)
         df:pd.DataFrame = pd.DataFrame.from_dict(current_data)
         write_dataframe_to_s3(bucket, key, df)
-
+    print('Scraping has been finished!')
 
 if __name__ == '__main__':
     run_scraper()

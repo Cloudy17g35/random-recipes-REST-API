@@ -4,6 +4,7 @@ from typing import Tuple, Dict
 from collections import defaultdict
 PAGE_LIMIT = 50
 
+
 class Scraper:
     '''Scraper made to get all recipes titles and links from site jadlonomia.com'''
     @staticmethod
