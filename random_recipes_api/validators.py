@@ -10,10 +10,10 @@ class MealTypeValidator(BaseModel):
     def meal_type_must_be_valid(cls, meal_type):
         meal_type = meal_type.lower().strip()
         
-        possible_meals: List[str] = meal_types_mapper.get_possible_meal_types()
+        possible_meal_types: List[str] = meal_types_mapper.get_possible_meal_types()
         
-        if meal_type not in possible_meals:
-            message: str = f'{meal_type} is not in possible_books: '\
-                           f"{', '.join(possible_meals)}"
+        if meal_type not in possible_meal_types:
+            message: str = f'{meal_type} is not in possible meal types: '\
+                           f"{', '.join(possible_meal_types)}"
             raise ValueError(message)
         return meal_type

@@ -1,4 +1,4 @@
-from random_recipes_api.pandas_dataframe import get_random_recipe
+import random_recipes_api.pandas_dataframe as pandas_dataframe
 import random_recipes_api.validators as validators
 from pydantic import ValidationError
 from fastapi import HTTPException
@@ -10,11 +10,11 @@ output_file_format = 'parquet'
 
 def get_random_recipe(meal_type:str):
     try:
-        meal_type = validators.MealTypeValidator(meal_type)
+        meal_type = validators.MealTypeValidator(meal_type=meal_type).meal_type
     except ValidationError as e:
         raise HTTPException(status_code=400, 
                             detail=e.errors())
-    recipe_title, recipe_url = get_random_recipe(
+    recipe_title, recipe_url = pandas_dataframe.get_random_recipe(
                                        bucket_name,
                                        s3_key_prefix,
                                        meal_type,
