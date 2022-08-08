@@ -16,5 +16,4 @@ class MealTypeValidator(BaseModel):
             message: str = f'{meal_type} is not in possible_books: '\
                            f"{', '.join(possible_meals)}"
             raise ValueError(message)
-        return meal_type.lower().strip()
-
+        return meal_type
