@@ -2,7 +2,7 @@ from random_recipes_api.scraper import Scraper
 from random_recipes_api.s3_handler import S3Handler
 from random_recipes_api.meal_types_mapper import mapper
 import pandas as pd
-from typing import Dict, List
+from typing import Dict
 
 bucket = 'przepisy-jadlonomia'
 output_file_format = 'parquet'
@@ -16,7 +16,6 @@ def write_dataframe_to_s3(
     s3_handler = S3Handler(bucket, key)
     s3_handler.write_parquet_file_from_dataframe(data_frame)
     print(f'dataframe with recipes is now saved on your s3 bucket: {bucket} with key:{key}')
-
 
 
 def run_scraper():

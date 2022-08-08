@@ -1,6 +1,7 @@
 import pytest
 from random_recipes_api.validators import MealTypeValidator
 from random_recipes_api.s3_handler import S3Handler
+import random_recipes_api.pandas_dataframe as pandas_dataframe
 import pandas as pd
 bucket_name = 'przepisy-jadlonomia'
 
@@ -42,7 +43,37 @@ class TestS3Handler:
         s3_key_prefix = 'links_for_meal_type='
         meal_type = 'soups'
         output_file_format = 'parquet'
+        bucket_name='przepisy-jadlonomia'
         s3_key = S3Handler.get_s3_key_name(s3_key_prefix, meal_type, output_file_format)
-        s3_handler = S3Handler(bucket_name='przepisy-jadlonomia', key_name=s3_key)
+        s3_handler = S3Handler(bucket_name=bucket_name, key_name=s3_key)
         df = s3_handler.read_parquet_file_to_dataframe()
         assert type(df) == pd.DataFrame
+        
+
+class TestPandasDataframe:
+    
+    def test_get_dataframe_type(self):
+        s3_key_prefix = 'links_for_meal_type='
+        meal_type = 'soups'
+        output_file_format = 'parquet'
+        bucket_name='przepisy-jadlonomia'
+        df = pandas_dataframe.get_dataframe(bucket_name,
+                                       s3_key_prefix,
+                                       meal_type,
+                                       output_file_format)
+        assert type(df) == pd.DataFrame
+    
+    
+    def test_get_sample(self):
+        s3_key_prefix = 'links_for_meal_type='
+        meal_type = 'soups'
+        output_file_format = 'parquet'
+        bucket_name='przepisy-jadlonomia'
+        df = pandas_dataframe.get_dataframe(bucket_name,
+                                       s3_key_prefix,
+                                       meal_type,
+                                       output_file_format)
+        sample:pd.DataFrame = pandas_dataframe.get_sample(df)
+        actual_number_of_rows:int = sample.shape[0]
+        expected_number_of_rows:int = 1
+        assert actual_number_of_rows == expected_number_of_rows
