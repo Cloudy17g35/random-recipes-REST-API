@@ -1,4 +1,5 @@
 import pytest
+from pydantic import ValidationError
 from random_recipes_api.validators import MealTypeValidator
 from random_recipes_api.s3_handler import S3Handler
 import random_recipes_api.pandas_dataframe as pandas_dataframe
@@ -22,9 +23,9 @@ class TestValidator:
     
     def test_validator_invalid_meal_type(self):
         invalid_meal_type:str = 'foo'
-        expected_result:ValueError = ValueError
+        expected_result:ValidationError = ValidationError 
         with pytest.raises(Exception) as e:
-            MealTypeValidator.meal_type_must_be_valid(invalid_meal_type)
+            MealTypeValidator(meal_type=invalid_meal_type)
         assert e.type == expected_result
         
 
@@ -77,3 +78,15 @@ class TestPandasDataframe:
         actual_number_of_rows:int = sample.shape[0]
         expected_number_of_rows:int = 1
         assert actual_number_of_rows == expected_number_of_rows
+        
+    def test_get_random_meal_and_link(self):
+        s3_key_prefix = 'links_for_meal_type='
+        meal_type = 'soups'
+        output_file_format = 'parquet'
+        bucket_name='przepisy-jadlonomia'
+        recipe_title, recipe_url = pandas_dataframe.get_random_recipe(bucket_name,
+                                       s3_key_prefix,
+                                       meal_type,
+                                       output_file_format)
+        assert isinstance(recipe_title, str)
+        assert isinstance(recipe_url, str)
