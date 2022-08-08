@@ -32,6 +32,7 @@ def run_scraper():
         write_dataframe_to_s3(bucket, key, df)
     print('Scraping has been finished!')
 
+
 if __name__ == '__main__':
     run_scraper()
     
