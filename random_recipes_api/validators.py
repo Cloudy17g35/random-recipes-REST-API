@@ -1,9 +1,9 @@
 from pydantic import BaseModel, validator
-import meal_types_mapper
+import random_recipes_api.meal_types_mapper as meal_types_mapper
 from typing import List
 
 
-class GetBookAndWordRequest(BaseModel):
+class MealTypeValidator(BaseModel):
     meal_type: str
 
     @validator('meal_type')
