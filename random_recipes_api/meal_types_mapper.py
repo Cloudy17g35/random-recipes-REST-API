@@ -1,4 +1,6 @@
-from typing import Dict
+from typing import Dict, List
+
+
 mapper:Dict[str, str] = {'sniadania': 'breakfasts',
           'przystawki': 'starters',
           'ciasta-i-desery': 'cakes_and_desserts',
@@ -8,3 +10,7 @@ mapper:Dict[str, str] = {'sniadania': 'breakfasts',
           'lunche-do-pracy':'work_lunches',
           'dania-glowne':'main_courses',
           'sosy-i-dodatki': 'sauces_and_etceteras'}
+
+
+def get_possible_meal_types() -> List[str]:
+    return list(mapper.values())

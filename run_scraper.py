@@ -1,6 +1,6 @@
 from random_recipes_api.scraper import Scraper
 from random_recipes_api.s3_handler import S3Handler
-from random_recipes_api.lunch_types_mapper import mapper
+from random_recipes_api.meal_types_mapper import mapper
 import pandas as pd
 from typing import Dict, List
 
