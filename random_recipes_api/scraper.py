@@ -29,7 +29,7 @@ class Scraper:
         return self.get_link_from_article(article), self.get_article_title(article)
     
     
-    def get_data_for_meal_type(self,meal_type:str) -> Dict[str, str]:
+    def get_data_for_meal_type(self, meal_type:str) -> Dict[str, str]:
         page_number: int = 1
         result:Dict[str, str] = defaultdict(list)
         while page_number <= PAGE_LIMIT:

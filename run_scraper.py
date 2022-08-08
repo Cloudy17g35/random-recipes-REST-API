@@ -18,16 +18,15 @@ def write_dataframe_to_s3(
     print(f'dataframe with recipes is now saved on your s3 bucket: {bucket} with key:{key}')
 
 
-def get_s3_key_name(meal_type:str):
-    return f'{s3_key_prefix}{meal_type}.{output_file_format}'
-
 
 def run_scraper():
     print('Scraping data started')
     meal_types_mapper:Dict[str, str] = mapper
     for meal_for_request, meal_type_in_english in meal_types_mapper.items():
         current_data:Dict[str, str] = Scraper().get_data_for_meal_type(meal_for_request)
-        key:str = get_s3_key_name(meal_type_in_english)
+        key:str = S3Handler.get_s3_key_name(s3_key_prefix, 
+                                            meal_type_in_english, 
+                                            output_file_format)
         df:pd.DataFrame = pd.DataFrame.from_dict(current_data)
         write_dataframe_to_s3(bucket, key, df)
     print('Scraping has been finished!')
