@@ -4,7 +4,7 @@ from random_recipes_api.meal_types_mapper import mapper
 import pandas as pd
 from typing import Dict
 
-bucket = 'przepisy-jadlonomia'
+bucket = 'przepisy2'
 output_file_format = 'parquet'
 s3_key_prefix = 'links_for_meal_type='
 

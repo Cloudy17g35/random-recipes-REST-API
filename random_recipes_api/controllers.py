@@ -3,7 +3,7 @@ from random_recipes_api import validators
 from pydantic import ValidationError
 from random_recipes_api import responses
 
-bucket_name = 'przepisy-jadlonomia'
+bucket_name = 'przepisy2'
 s3_key_prefix = 'links_for_meal_type='
 output_file_format = 'parquet'
 
