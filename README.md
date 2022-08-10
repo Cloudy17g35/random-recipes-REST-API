@@ -1,5 +1,19 @@
 # RANDOM RECIPE REST API
 
+
+## HOW TO RUN
+
+In order to run with docker:
+
+**Step 1**
+`docker build -t random_recipes_api .`
+
+
+**Step 2**
+`docker run -e AWS_ACCESS_KEY_ID=your_access_key -e AWS_SECRET_ACCESS_KEY=your_secret_access_key -p 8080:8080 random_recipes_api`
+
+
+## DESCRIPTION
 Enables to make GET request
 `GET recipes/random_recipe?meal_type=`
 
@@ -22,5 +36,4 @@ Diagram:
 After we have all recipes stored on S3 flow looks like on diagram showed below:
 
 ![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/APIdiagram.png)
-
 
