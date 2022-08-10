@@ -1,12 +1,14 @@
 from random_recipes_api.scraper import Scraper
 from random_recipes_api.s3_handler import S3Handler
 from random_recipes_api.meal_types_mapper import mapper
+from random_recipes_api import config_file
 import pandas as pd
-from typing import Dict
+from typing import Dict, Any
 
-bucket = 'przepisy2'
-output_file_format = 'parquet'
-s3_key_prefix = 'links_for_meal_type='
+CONFIG_DATA:Dict[str, Any] = config_file.get_data()
+bucket_name:str = CONFIG_DATA['bucket_name']
+output_file_format:str = CONFIG_DATA['output_file_format']
+s3_key_prefix:str = CONFIG_DATA['s3_key_prefix']
 
 
 def write_dataframe_to_s3(
@@ -27,7 +29,7 @@ def run_scraper():
                                             meal_type_in_english, 
                                             output_file_format)
         df:pd.DataFrame = pd.DataFrame.from_dict(current_data)
-        write_dataframe_to_s3(bucket, key, df)
+        write_dataframe_to_s3(bucket_name, key, df)
     print('Scraping has been finished!')
 
 

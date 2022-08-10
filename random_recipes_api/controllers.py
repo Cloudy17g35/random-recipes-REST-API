@@ -2,10 +2,13 @@ from random_recipes_api import pandas_dataframe
 from random_recipes_api import validators
 from pydantic import ValidationError
 from random_recipes_api import responses
+from random_recipes_api import config_file
+from typing import Dict, Any
 
-bucket_name = 'przepisy2'
-s3_key_prefix = 'links_for_meal_type='
-output_file_format = 'parquet'
+CONFIG_DATA:Dict[str, Any] = config_file.get_data()
+bucket_name:str = CONFIG_DATA['bucket_name']
+output_file_format:str = CONFIG_DATA['output_file_format']
+s3_key_prefix:str = CONFIG_DATA['s3_key_prefix']
 
 
 def get_random_recipe(meal_type:str):
@@ -18,7 +21,8 @@ def get_random_recipe(meal_type:str):
                                        s3_key_prefix,
                                        meal_type,
                                        output_file_format)
-    return {'recipe_title': recipe_title, 'recipe_url': recipe_url}
+    
+    return responses.valid_response(recipe_title, recipe_url)
 
 
 
