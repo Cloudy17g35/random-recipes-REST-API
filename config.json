@@ -1,0 +1,3 @@
+{"bucket_name" : "random-recipes-api",
+"output_file_format": "parquet",
+"s3_key_prefix": "links_for_meal_type="}
