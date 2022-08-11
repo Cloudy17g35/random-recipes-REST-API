@@ -32,11 +32,17 @@ Other parameters in `config.json` are:
 * **s3_key_prefix** - prefix of the s3 key
 
 **Step 1**
-`docker build -t random_recipes_api .`
+
+
+```
+docker build -t random_recipes_api .
+```
 
 
 **Step 2**
-`docker run -e AWS_ACCESS_KEY_ID=your_access_key -e AWS_SECRET_ACCESS_KEY=your_secret_access_key -p 8080:8080 random_recipes_api`
+```
+docker run -e AWS_ACCESS_KEY_ID=your_access_key -e AWS_SECRET_ACCESS_KEY=your_secret_access_key -p 8080:8080 random_recipes_api
+```
 
 **Step 3**
 If everything is allright at this stage you can make `GET http://0.0.0.0:8080/recipes/random_recipe?meal_type=`
