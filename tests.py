@@ -46,8 +46,10 @@ class TestS3Handler:
     
     def test_read_parquet_file_to_dataframe(self):
         meal_type = 'soups'
-        s3_key = s3_handler.S3Handler.get_s3_key_name(s3_key_prefix, meal_type, output_file_format)
-        handler = s3_handler.S3Handler(bucket_name=bucket_name, key_name=s3_key)
+        s3_key = s3_handler.S3Handler.get_s3_key_name(s3_key_prefix, meal_type, 
+                                                      output_file_format)
+        handler = s3_handler.S3Handler(bucket_name=bucket_name, 
+                                       key_name=s3_key)
         df = handler.read_parquet_file_to_dataframe()
         assert type(df) == pd.DataFrame
         
