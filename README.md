@@ -45,6 +45,7 @@ docker run -e AWS_ACCESS_KEY_ID=your_access_key -e AWS_SECRET_ACCESS_KEY=your_se
 ```
 
 **Step 3**
+
 If everything is allright at this stage you can make `GET http://0.0.0.0:8080/recipes/random_recipe?meal_type=`
 
 
@@ -61,7 +62,7 @@ Scraper diagram:
 ## EXAMPLE CALLS AND RESULTS
 
 
-**meal_type:** soups
+* **meal_type:** soups
 
 ```
 /recipes/random_recipe/?meal_type=soups
@@ -69,7 +70,47 @@ Scraper diagram:
 
 result:
 ```
+{
+"recipe_title":"Codzienny krem z dyni",
+"recipe_url":"https://www.jadlonomia.com/przepisy/ulubiony-codzienny-krem-z-dyni/"
+}
+```
 
+
+
+
+
+* **meal_type:** starters
+
+```
+/recipes/random_recipe/?meal_type=starters
+```
+
+
+result:
+```
+{
+"recipe_title":"Drożdżówki z pokrzywowym pesto",
+"recipe_url":"https://www.jadlonomia.com/przepisy/drozdzowki-z-pokrzywa/"}
+}
+```
+
+
+* **meal_type:** foo (Invalid call)
+
+```
+/recipes/random_recipe/?meal_type=foo
+```
+
+
+result:
+```
+{
+"detail":[{"loc":["meal_type"],
+"msg":"foo is not in possible meal types: breakfasts, starters, cakes_and_desserts, 
+spreads, soups, beverages, work_lunches, main_courses, sauces_and_etceteras",
+"type":"value_error"}]
+}
 ```
 
 ## IDEAS
