@@ -45,6 +45,8 @@ All recipes are scraped from [jadlonomia](https://www.jadlonomia.com/ "jadlonomi
 Script called `run_scraper.py` scrapes all the recipes and stores it in **S3 bucket**.
 
 Scraper diagram:
+
+
 ![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/Scraper_diagram.png)
 
 
