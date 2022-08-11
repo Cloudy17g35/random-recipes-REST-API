@@ -52,7 +52,19 @@ Scraper diagram:
 
 ![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/Scraper_diagram.png)
 
+## EXAMPLE CALLS AND RESULTS
 
+
+**meal_type:** soups
+
+```
+/recipes/random_recipe/?meal_type=soups
+```
+
+result:
+```
+
+```
 
 ## IDEAS
 
