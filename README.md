@@ -30,6 +30,8 @@ Other parameters in `config.json` are:
 
 * **output file format** - if there will be other file formats in the future - for now only **parquet** is supported.
 * **s3_key_prefix** - prefix of the s3 key
+* **host** - where API will be hosted
+* **port** - API exposed port
 
 **Step 1**
 
