@@ -5,6 +5,8 @@ from random_recipes_api import s3_handler
 import random_recipes_api.pandas_dataframe as pandas_dataframe
 from random_recipes_api import config_file
 import pandas as pd
+import requests
+import json
 from typing import Dict, Any
 
 
@@ -12,6 +14,10 @@ CONFIG_DATA:Dict[str, Any] = config_file.get_data()
 bucket_name:str = CONFIG_DATA['bucket_name']
 output_file_format:str = CONFIG_DATA['output_file_format']
 s3_key_prefix:str = CONFIG_DATA['s3_key_prefix']
+port:int = CONFIG_DATA['port']
+host:str = CONFIG_DATA['host']
+endpoint:str= '/recipes/random_recipe/'
+address:str = f'http://{host}:{port}{endpoint}'
 
 class TestValidator:
     
@@ -84,3 +90,55 @@ class TestPandasDataframe:
                                        output_file_format)
         assert isinstance(recipe_title, str)
         assert isinstance(recipe_url, str)
+        
+
+class TestAPI:
+    
+    def test_valid_response_status_code(self):
+        meal_type = 'breakfasts'
+        address = f'http://{host}:{port}{endpoint}'
+        params:Dict[str, str] = {
+            'meal_type': meal_type
+            }
+        resp:requests.Response = requests.get(address, 
+                                              params=params)
+        actual_status_code:int = resp.status_code
+        expected_status_code:int = 200
+        assert actual_status_code == expected_status_code
+
+    def test_valid_response_content_type_is_dict(self):
+        meal_type = 'breakfasts'
+        params:Dict[str, str] = {
+            'meal_type': meal_type
+            }
+        resp:requests.Response = requests.get(address, 
+                                              params=params,
+                                              )
+        actual_content:Any = json.loads(resp.text)
+        expected_type = dict
+        assert isinstance(actual_content, expected_type)
+        
+    def test_valid_response_content_keys_in_dict(self):
+        meal_type = 'breakfasts'
+        params:Dict[str, str] = {
+            'meal_type': meal_type
+            }
+        resp:requests.Response = requests.get(address, 
+                                              params=params,
+                                              )
+        actual_content:dict = json.loads(resp.text)
+        actual_content_keys:set = set(actual_content.keys())
+        expected_keys:set = set(['recipe_title', 'recipe_url'])
+        assert expected_keys - actual_content_keys == set()
+        
+    def test_bad_request_status_code(self):
+        meal_type = 'foo'
+        params:Dict[str, str] = {
+            'meal_type': meal_type
+            }
+        resp:requests.Response = requests.get(address, 
+                                              params=params,
+                                              )
+        actual_status_code:int = resp.status_code
+        expected_status_code:int = 400
+        assert actual_status_code == expected_status_code
