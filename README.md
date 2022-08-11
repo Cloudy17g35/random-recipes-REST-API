@@ -1,9 +1,21 @@
 # RANDOM RECIPE REST API
 
 
-## HOW TO RUN
+## HOW API WORKS?
+![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/APIdiagram.png)
+
+## REQUIREMENTS
+If you want to run it with docker you need to have IAM role and s3 bucket created.
+
+Here's some links which might me helpful:
+
+* [IAM role creation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)
+* [bucket creation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html)
+
+## HOW TO RUN WITH DOCKER
 
 In order to run with docker:
+
 
 **Step 1**
 `docker build -t random_recipes_api .`
@@ -25,15 +37,9 @@ All recipes are scraped from [jadlonomia](https://www.jadlonomia.com/ "jadlonomi
 
 In first place all the recipes need to be scraped. Script called `run_scraper.py` enables to make it. It scrapes all the recipes and stores it in **S3 bucket**.
 
-
 Diagram:
 
 
 ![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/Scraper_diagram.png)
 
-
-
-After we have all recipes stored on S3 flow looks like on diagram showed below:
-
-![Image](https://github.com/Cloudy17g35/random-recipes-REST-API/blob/main/diagrams/APIdiagram.png)
 
